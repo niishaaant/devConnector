@@ -1,6 +1,5 @@
 {
   "mongoURI": "mongodb+srv://nishaaant_:nidera@cluster0.vwzxq.mongodb.net/<dbname>?retryWrites=true&w=majority",
   "jwtSecter": "yeahthatsmysecrate",
-  "clientid": "5ffdb9481cf9d5ea97b0",
-  "clientSecret": "d47e521daf46072f6f00af3c68ecfbb948860afb"
+  "githubtoken": "a962f1ad94eb6df0924740249e6ebf23faa96f6b"
 }
