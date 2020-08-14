@@ -1,0 +1,29 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Landing = () => {
+  return (
+    <div className='landing'>
+      <div className='dark-overlay'>
+        <div className='landing-inner'>
+          <h1 className='x-large'>
+            <i className='fas fa-code'></i>DevConnector
+          </h1>
+          <p className='lead'>
+            Create developer profile/portfolio, share posts and get help from
+            other developers
+          </p>
+          <div className='buttons'>
+            <Link to='/register' className='btn btn-primary'>
+              Sign Up
+            </Link>
+            <Link to='/login' className='btn'>
+              Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Landing;
