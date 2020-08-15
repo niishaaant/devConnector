@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Register() {
+const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -79,6 +79,6 @@ function Register() {
       </p>
     </Fragment>
   );
-}
+};
 
 export default Register;
