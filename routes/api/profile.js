@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const Profile = require('../../Modules/Profile');
 const User = require('../../Modules/User');
+const Post = require('../../Modules/Post');
 const { findOneAndUpdate } = require('../../Modules/Profile');
 const { response } = require('express');
 
@@ -90,7 +91,7 @@ router.post(
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
-          { new: true }
+          { new: true, upsert: true }
         );
 
         return res.json(profile);
@@ -147,7 +148,8 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
   try {
-    //@todo- remove posts
+    //remove posts
+    await Post.deleteMany({ user: req.user.id });
 
     //remove profile
     await Profile.findOneAndRemove({ user: req.user.id });

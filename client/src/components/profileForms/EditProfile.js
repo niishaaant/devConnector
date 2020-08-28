@@ -1,8 +1,23 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createProfile, getCurrentUser } from '../../action/profile';
+
+const initialState = {
+  company: '',
+  website: '',
+  location: '',
+  status: '',
+  skills: '',
+  githubusername: '',
+  bio: '',
+  twitter: '',
+  facebook: '',
+  linkedin: '',
+  youtube: '',
+  instagram: '',
+};
 
 const EditProfile = ({
   profile: { profile, loading },
@@ -10,45 +25,25 @@ const EditProfile = ({
   getCurrentUser,
   history,
 }) => {
-  const [formData, setFormData] = useState({
-    company: '',
-    website: '',
-    location: '',
-    status: '',
-    skills: '',
-    githubusername: '',
-    bio: '',
-    twitter: '',
-    facebook: '',
-    linkedin: '',
-    youtube: '',
-    instagram: '',
-  });
+  const [formData, setFormData] = useState(initialState);
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-    getCurrentUser();
-
-    setFormData(
-      {
-        company: loading || !profile.company ? '' : profile.company,
-        website: loading || !profile.website ? '' : profile.website,
-        location: loading || !profile.location ? '' : profile.location,
-        status: loading || !profile.status ? '' : profile.status,
-        skills: loading || !profile.skills ? '' : profile.skills,
-        githubusername:
-          loading || !profile.githubusername ? '' : profile.githubusername,
-        bio: loading || !profile.bio ? '' : profile.bio,
-        twitter: loading || !profile.social ? '' : profile.twitter,
-        facebook: loading || !profile.social ? '' : profile.facebook,
-        linkedin: loading || !profile.social ? '' : profile.linkedin,
-        youtube: loading || !profile.social ? '' : profile.youtube,
-        instagram: loading || !profile.social ? '' : profile.instagram,
-      },
-      [loading, getCurrentUser, setFormData]
-    );
-  });
+    if (!profile) getCurrentUser();
+    if (!loading && profile) {
+      const profileData = { ...initialState };
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      }
+      for (const key in profile.social) {
+        if (key in profileData) profileData[key] = profile.social[key];
+      }
+      if (Array.isArray(profileData.skills))
+        profileData.skills = profileData.skills.join(', ');
+      setFormData(profileData);
+    }
+  }, [loading, getCurrentUser, profile]);
 
   const {
     company,
@@ -70,12 +65,12 @@ const EditProfile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Create Your Profile</h1>
+      <h1 className='large text-primary'>Edit Your Profile</h1>
       <p className='lead'>
         <i className='fas fa-user'></i>Let's get some information about you to
         make your profile stand out
@@ -235,9 +230,9 @@ const EditProfile = ({
         )}
 
         <input type='submit' className='btn btn-primary my-1 p-1' />
-        <a href='dashboard.html' className='btn btn-light my-1'>
+        <Link to='/dashboard' className='btn btn-light my-1'>
           Go Back
-        </a>
+        </Link>
       </form>
     </Fragment>
   );
