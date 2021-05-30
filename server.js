@@ -1,13 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const path = require('path')
 
 //Initialise express
 const app = express();
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://silly-wescoff-fdad6c.netlify.app',
     credentials: true,
   })
 );
@@ -18,7 +19,7 @@ connectDB();
 //Initialise middleware
 app.use(express.json({ extended: false }));
 
-app.get('/', (req, res) => res.send('API Running'));
+app.get('/', (req,res)=> res.send('API Running'));
 
 // Define routes
 app.use('/api/user', require('./routes/api/users'));

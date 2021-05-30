@@ -14,7 +14,7 @@ import {
 
 export const getCurrentUser = () => async (dispatch) => {
 	try {
-		const res = await axios.get('http://127.0.0.1:5000/api/profile/me');
+		const res = await axios.get('https://git.heroku.com/devconnector-niishaaaant.git/api/profile/me');
 		console.log(res.data);
 		dispatch({
 			type: GET_PROFILE,
@@ -32,7 +32,7 @@ export const getCurrentUser = () => async (dispatch) => {
 export const getProfiles = () => async (dispatch) => {
 	dispatch({ type: CLEAR_PROFILE });
 	try {
-		const res = await axios.get('http://127.0.0.1:5000/api/profile');
+		const res = await axios.get('https://git.heroku.com/devconnector-niishaaaant.git/api/profile');
 		console.log(res.data);
 		dispatch({
 			type: GET_PROFILES,
@@ -50,7 +50,7 @@ export const getProfiles = () => async (dispatch) => {
 export const getProfileById = (userId) => async (dispatch) => {
 	try {
 		const res = await axios.get(
-			`http://127.0.0.1:5000/api/profile/user/${userId}`
+			`https://git.heroku.com/devconnector-niishaaaant.git/api/profile/user/${userId}`
 		);
 		console.log(res.data);
 		dispatch({
@@ -69,7 +69,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 export const getGithubRepos = (username) => async (dispatch) => {
 	try {
 		const res = await axios.get(
-			`http://127.0.0.1:5000/api/profile/github/${username}`
+			`https://git.heroku.com/devconnector-niishaaaant.git/api/profile/github/${username}`
 		);
 		console.log(res.data);
 		dispatch({
@@ -91,7 +91,7 @@ export const createProfile = (formData, history, edit = false) => async (
 	try {
 		const res = await axios({
 			method: 'post',
-			url: 'http://127.0.0.1:5000/api/profile',
+			url: 'https://git.heroku.com/devconnector-niishaaaant.git/api/profile',
 			data: formData,
 			headers: { 'Content-Type': 'application/json' },
 		});
@@ -129,7 +129,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
 	try {
 		const res = await axios({
 			method: 'put',
-			url: 'http://127.0.0.1:5000/api/profile/experience',
+			url: 'https://git.heroku.com/devconnector-niishaaaant.git/api/profile/experience',
 			data: formData,
 			headers: { 'Content-Type': 'application/json' },
 		});
@@ -161,7 +161,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
 	try {
 		const res = await axios({
 			method: 'put',
-			url: 'http://127.0.0.1:5000/api/profile/education',
+			url: 'https://git.heroku.com/devconnector-niishaaaant.git/api/profile/education',
 			data: formData,
 			headers: { 'Content-Type': 'application/json' },
 		});
@@ -193,7 +193,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 	try {
 		const res = await axios({
 			method: 'delete',
-			url: `http://127.0.0.1:5000/api/profile/experience/${id}`,
+			url: `https://git.heroku.com/devconnector-niishaaaant.git/api/profile/experience/${id}`,
 		});
 		dispatch({
 			type: UPDATE_PROFILE,
@@ -213,7 +213,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 	try {
 		const res = await axios({
 			method: 'delete',
-			url: `http://127.0.0.1:5000/api/profile/education/${id}`,
+			url: `https://git.heroku.com/devconnector-niishaaaant.git/api/profile/education/${id}`,
 		});
 		dispatch({
 			type: UPDATE_PROFILE,
@@ -234,7 +234,7 @@ export const deleteAccount = () => async (dispatch) => {
 		try {
 			await axios({
 				method: 'delete',
-				url: `http://127.0.0.1:5000/api/profile`,
+				url: `https://git.heroku.com/devconnector-niishaaaant.git/api/profile`,
 			});
 			dispatch({
 				type: CLEAR_PROFILE,
