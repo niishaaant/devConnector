@@ -19,7 +19,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get('https://git.heroku.com/devconnector-niishaaaant.git/api/auth');
+    const res = await axios.get('https://devconnector-niishaaaant.herokuapp.com/api/auth');
     console.log(res.data);
 
     dispatch({
@@ -40,7 +40,7 @@ export const register = (name, email, password) => async (dispatch) => {
   try {
     const res = await axios({
       method: 'post',
-      url: 'https://git.heroku.com/devconnector-niishaaaant.git/api/user',
+      url: 'https://devconnector-niishaaaant.herokuapp.com/api/user',
       data: body,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -70,7 +70,7 @@ export const login = (email, password) => async (dispatch) => {
   try {
     const res = await axios({
       method: 'post',
-      url: 'https://git.heroku.com/devconnector-niishaaaant.git/api/auth',
+      url: 'https://devconnector-niishaaaant.herokuapp.com/api/auth',
       data: body,
       headers: { 'Content-Type': 'application/json' },
     });

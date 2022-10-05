@@ -13,7 +13,7 @@ import {
 
 export const getPosts = () => async (dispatch) => {
 	try {
-		const res = await axios.get('https://git.heroku.com/devconnector-niishaaaant.git/api/post');
+		const res = await axios.get('https://devconnector-niishaaaant.herokuapp.com/api/post');
 
 		dispatch({
 			type: GET_POSTS,
@@ -30,7 +30,7 @@ export const getPosts = () => async (dispatch) => {
 //get single post
 export const getPost = (id) => async (dispatch) => {
 	try {
-		const res = await axios.get(`https://git.heroku.com/devconnector-niishaaaant.git/api/post/${id}`);
+		const res = await axios.get(`https://devconnector-niishaaaant.herokuapp.com/api/post/${id}`);
 
 		dispatch({
 			type: GET_POST,
@@ -47,7 +47,7 @@ export const getPost = (id) => async (dispatch) => {
 //add like
 export const addLike = (id) => async (dispatch) => {
 	try {
-		const res = await axios.put(`https://git.heroku.com/devconnector-niishaaaant.git/api/post/like/${id}`);
+		const res = await axios.put(`https://devconnector-niishaaaant.herokuapp.com/api/post/like/${id}`);
 
 		dispatch({
 			type: UPDATE_LIKES,
@@ -64,7 +64,7 @@ export const addLike = (id) => async (dispatch) => {
 //remove like
 export const removeLike = (id) => async (dispatch) => {
 	try {
-		const res = await axios.put(`https://git.heroku.com/devconnector-niishaaaant.git/api/post/unlike/${id}`);
+		const res = await axios.put(`https://devconnector-niishaaaant.herokuapp.com/api/post/unlike/${id}`);
 
 		dispatch({
 			type: UPDATE_LIKES,
@@ -81,7 +81,7 @@ export const removeLike = (id) => async (dispatch) => {
 //delete post
 export const deletePost = (id) => async (dispatch) => {
 	try {
-		await axios.delete(`https://git.heroku.com/devconnector-niishaaaant.git/api/post/${id}`);
+		await axios.delete(`https://devconnector-niishaaaant.herokuapp.com/api/post/${id}`);
 
 		dispatch({
 			type: DELETE_POST,
@@ -100,7 +100,7 @@ export const deletePost = (id) => async (dispatch) => {
 //add post
 export const addPost = (formData) => async (dispatch) => {
 	try {
-		const res = await axios.post(`https://git.heroku.com/devconnector-niishaaaant.git/api/post`, formData);
+		const res = await axios.post(`https://devconnector-niishaaaant.herokuapp.com/api/post`, formData);
 
 		dispatch({
 			type: ADD_POST,
@@ -120,7 +120,7 @@ export const addPost = (formData) => async (dispatch) => {
 export const addComment = (postId, formData) => async (dispatch) => {
 	try {
 		const res = await axios.post(
-			`https://git.heroku.com/devconnector-niishaaaant.git/api/post/comment/${postId}`,
+			`https://devconnector-niishaaaant.herokuapp.com/api/post/comment/${postId}`,
 			formData
 		);
 
@@ -142,7 +142,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 export const deleteComment = (postId, commentId) => async (dispatch) => {
 	try {
 		await axios.delete(
-			`https://git.heroku.com/devconnector-niishaaaant.git/api/post/comment/${postId}/${commentId}`
+			`https://devconnector-niishaaaant.herokuapp.com/api/post/comment/${postId}/${commentId}`
 		);
 
 		dispatch({
